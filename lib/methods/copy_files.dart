@@ -32,7 +32,7 @@ Future<DateTime?> getExifOriginalDate(String filePath) async {
     } else {
       return null;
     }
-
+    
     // exiftool -DateTimeOriginal
     final result =
         await io.Process.run(exifToolFileName, ['-DateTimeOriginal', filePath]);
@@ -52,7 +52,6 @@ Future<DateTime?> getExifOriginalDate(String filePath) async {
       return DateTime(year, month, day, hour, minute, second);
     }
   } catch (e) {
-    // 오류 발생 시 null 반환
     return null;
   }
   return null;
