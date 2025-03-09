@@ -32,7 +32,7 @@ Future<DateTime?> getExifOriginalDate(String filePath) async {
     } else {
       return null;
     }
-    
+
     // exiftool -DateTimeOriginal
     final result =
         await io.Process.run(exifToolFileName, ['-DateTimeOriginal', filePath]);
@@ -153,12 +153,14 @@ Future<void> copyFiles({
 
         return;
       }
-      
+
       final (year, month, day) = extractDateComponents(exifDate);
 
       // destination/year/year-month/year-month-day
-      final destDirPath =
-          p.join(destinationPath, '$year', '$year-$month', '$year-$month-$day');
+      final monthStr = month.toString().padLeft(2, '0');
+      final dayStr = day.toString().padLeft(2, '0');
+      final destDirPath = p.join(destinationPath, '$year', '$year-$monthStr',
+          '$year-$monthStr-$dayStr');
       final destDir = io.Directory(destDirPath);
       if (!await destDir.exists()) {
         await destDir.create(recursive: true);
