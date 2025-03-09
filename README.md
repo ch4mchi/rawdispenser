@@ -23,7 +23,7 @@ In a future update, this format will be made freely configurable.
 
 ## Availability
 
-rawdispenser current ly supports Windows(x64) and macOS(Apple Silicon)
+rawdispenser currently supports Windows(x64) and macOS(Apple Silicon)
 
 ## Handling Duplicate Files
 
