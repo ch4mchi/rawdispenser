@@ -21,6 +21,8 @@ class DragDropPageState extends State<DragDropPage> {
   int totalFiles = 0;
   int processedFiles = 0;
 
+  bool isCopying = false;
+
   Future<void> _updateFileCount(String path) async {
     final count = await countFiles(path);
     setState(() {
@@ -70,24 +72,29 @@ class DragDropPageState extends State<DragDropPage> {
 
   ElevatedButton fileCopyButton(BuildContext context) {
     return ElevatedButton(
-      onPressed: (sourcePath.isNotEmpty && destinationPath.isNotEmpty)
-          ? () {
-              setState(() {
-                processedFiles = 0;
-              });
-              copyFiles(
-                sourcePath: sourcePath,
-                destinationPath: destinationPath,
-                context: context,
-                getLocalizedString: getLocalizedString,
-                progressCallback: (int processed, int total) {
+      onPressed:
+          (!isCopying && sourcePath.isNotEmpty && destinationPath.isNotEmpty)
+              ? () async {
                   setState(() {
-                    processedFiles = processed;
+                    processedFiles = 0;
+                    isCopying = true;
                   });
-                },
-              );
-            }
-          : null,
+                  await copyFiles(
+                    sourcePath: sourcePath,
+                    destinationPath: destinationPath,
+                    context: context,
+                    getLocalizedString: getLocalizedString,
+                    progressCallback: (int processed, int total) {
+                      setState(() {
+                        processedFiles = processed;
+                      });
+                    },
+                  );
+                  setState(() {
+                    isCopying = false;
+                  });
+                }
+              : null,
       child: Text(getLocalizedString(context, 'copyButton')),
     );
   }
