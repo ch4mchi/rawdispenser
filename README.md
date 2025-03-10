@@ -33,5 +33,11 @@ If a file with the same name already exists in the destination directory, the pr
 
 ## TODO
 
-- Improve ExifTool execution speed
-- Customizable directory hierachy
+### Major
+[] Copy XMP files that correspond to RAW files
+[] Skip copying files that have no EXIF data
+[] Alert about skipped files
+
+### Minor
+[] Improve ExifTool execution speed
+[] Customizable directory hierachy
