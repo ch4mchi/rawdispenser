@@ -1,5 +1,7 @@
 # rawdispenser
 
+![Screen shot](./screenshot.png)
+
 ## Introduction
 
 rawdispenser is a program I developed after switching my photo editing software from Adobe Lightroom Classic (hereinafter LRC) to Adobe Lightroom (hereinafter LR). Unlike LRC, which has an import feature, LR has no choice but to search for photo files directly in the file system. This change disrupted my workflow in LRC, where I used the import function to organize photos from my memory card by date.
